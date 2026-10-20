@@ -1,0 +1,38 @@
+<command> ::="assoc" | "attrib" | 
+          "break" | "call" | "cd" | "chdir" | "cls" | "cmd" | "color" | "comp" | "copy" | 
+          "date" | "dir" | "doskey" | 
+          "echo" | "exit" | 
+          "fc" | "find" | "findstr" | "for" | "ftype" | 
+          "goto" | 
+          "help" | "hostname" | 
+          "if" | 
+          "label" | 
+          "md" | "mkdir" | "mklink" | "more" | "move" | 
+          "path" | "pause" | "popd" | "prompt" | "pushd" | 
+          "rd" | "rem" | "ren" | "rename" | "replace" | "rmdir" | 
+          "set" | "setlocal" | "shift" | "sort" | "start" | "subst" | 
+          "tasklist" | "taskkill" | "time" | "title" | "tree" | "type" | 
+          "ver" | "verify" | "vol" | 
+          "whoami" | 
+           "xcopy" 
+
+<exp> ::= <exp> <command_clubbing_symbols> <exp> | <simple-exp>
+<simple-exp>  ::= <command> {<flags>} {<args>} 
+
+<args> ::=<constant> (*(|  <exp> (advanced))*)
+
+(* []->optional *)
+(* {}->0 | 1 or more in number *)
+
+<command_clubbing_symbols> ::= "&&" | "||" | "|"
+
+<constant> ::= <file | directory names> | <executables> | <paths> | <literals>
+
+<literals> ::= <character> {<character>}
+<character> ::= <letter> | <digit> | <symbol>
+
+<symbol> ::= "\'" | '\"' | "(" | ")" | ">" | "^" | "!" | "&" | "<" | "|" | "%" | "*" | "+" | "-" | "?" | "\\"
+           | "." | "/" | ":"
+<letter> ::= a | A | b | B | c | C | d | D | e | E | f | F | g | G | h | H | i | I | j | J | k | K | l | L | m | M | n | N | o | O | p | P | q | Q | r | R| s | S | t | T | u | U | v | V | w | W | x | X | y | Y | z | Z 
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 
+
